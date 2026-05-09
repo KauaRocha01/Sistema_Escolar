@@ -5,6 +5,7 @@ import database.slqConn;
 import model.Aluno;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.Scanner;
 
 public class App
@@ -40,25 +41,30 @@ public class App
                     break;
                 case 3:
                     System.out.println("Excluir Aluno");
+                    System.out.print("Digite o ID do aluno a excluir: ");
+                    int id = sc.nextInt();
+                    sc.nextLine();
+                    alunoDaoMethods.excluirAluno(id);
                     break;
                 case 4:
                     System.out.println("Listar Alunos");
                     break;
                 case 5:
-                    System.out.println("Salvar Aluno");
+                    System.out.println("Listar Aluno por ID. Informe um ID para pesquisar");
+                    int idBusca = sc.nextInt();
 
+                    Optional<Aluno> alunoEncontrado = alunoDaoMethods.buscarPorId(idBusca);
 
-
-                List<Aluno> todosAlunos = alunoDaoMethods.listarTodosAlunos();
-
-                if (todosAlunos.isEmpty())
-                {
-                    System.out.println("Nenhum aluno encontrado.");
-                } else {
-                    for (Aluno aluno : todosAlunos){
-                        System.out.println(aluno);
+                    if (alunoEncontrado.isPresent()){
+                        System.out.println(alunoEncontrado);
+                    }else {
+                        System.out.println("nenhum aluno encontrado");
                     }
-                }
+                    break;
+
+
+
+
             }
 
         }while (opcao !=0);
