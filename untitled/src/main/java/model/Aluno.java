@@ -2,8 +2,8 @@ package model;
 
 import java.time.LocalDate;
 
-
 public class Aluno {
+
     private String id;
     private String nome;
     private String cpf;
@@ -11,18 +11,22 @@ public class Aluno {
     private LocalDate dataNascimento;
     private String telefone;
 
-    //Construtor para CRIAR um novo aluno
-    public Aluno(String nome, String cpf, String email, LocalDate dataNascimento, String telefone) {
+    // Construtor para criar novo aluno
+    public Aluno(String nome, String cpf, String email,
+                 LocalDate dataNascimento, String telefone) {
+
         this.nome = nome;
         this.cpf = cpf;
         this.email = email;
         this.dataNascimento = dataNascimento;
         this.telefone = telefone;
     }
-        //Construtor para LEITURA do banco (id ja existe)
 
+    // Construtor para leitura do banco
+    public Aluno(String id, String nome, String cpf,
+                 String email, LocalDate dataNascimento,
+                 String telefone) {
 
-    public Aluno(String id, String nome, String cpf, String email, LocalDate dataNascimento, String telefone) {
         this.id = id;
         this.nome = nome;
         this.cpf = cpf;
@@ -34,7 +38,6 @@ public class Aluno {
     public String getId() {
         return id;
     }
-
 
     public void setId(String id) {
         this.id = id;
@@ -81,11 +84,16 @@ public class Aluno {
     }
 
     @Override
-    public String toString()
-    {
+    public String toString() {
+
         return String.format(
-                "Aluno: id=id - nome=%s - cpf=%s - email=%s - nascimento=%s - telefone=%s",
-                id, nome, cpf, email, dataNascimento, telefone
+                "Aluno: id=%s - nome=%s - cpf=%s - email=%s - nascimento=%s - telefone=%s",
+                id,
+                nome,
+                cpf,
+                email,
+                dataNascimento,
+                telefone
         );
     }
 }

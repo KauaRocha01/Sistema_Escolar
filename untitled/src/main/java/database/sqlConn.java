@@ -5,7 +5,7 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.sql.Connection;
 
-public class slqConn {
+public class sqlConn {
     private static final String url = "jdbc:mysql://localhost:3306/sistema_escolar";
     private static final String user = "root";
     private static final String password = "Senai@134";

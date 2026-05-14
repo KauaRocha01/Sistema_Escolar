@@ -1,6 +1,6 @@
 package daolmplements;
 
-import database.slqConn;
+import database.sqlConn;
 import dao.IAlunoDAO;
 import model.Aluno;
 
@@ -15,7 +15,7 @@ public class AlunoDAOImplements implements IAlunoDAO {
     public void salvarAluno(Aluno aluno) {
         String sql = "INSERT INTO aluno(nome, cpf, email, data_nascimento, telefone) VALUES (?,?,?,?,?)";
 
-        try (Connection conn = slqConn.getConnection();
+        try (Connection conn = sqlConn.getConnection();
              PreparedStatement stmt = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
 
             stmt.setString(1, aluno.getNome());
@@ -45,7 +45,7 @@ public class AlunoDAOImplements implements IAlunoDAO {
     public Optional<Aluno> buscarPorId(int id) {
         String sql = "SELECT * FROM aluno WHERE id = ?";
 
-        try (Connection conn = slqConn.getConnection();
+        try (Connection conn = sqlConn.getConnection();
              PreparedStatement stmt = conn.prepareStatement(sql)) {
 
             stmt.setInt(1, id);
@@ -75,7 +75,7 @@ public class AlunoDAOImplements implements IAlunoDAO {
         String sql = "SELECT * FROM aluno ORDER BY nome ASC";
         List<Aluno> alunos = new ArrayList<>();
 
-        try (Connection conn = slqConn.getConnection();
+        try (Connection conn = sqlConn.getConnection();
              PreparedStatement stnt = conn.prepareStatement(sql);
              ResultSet rs = stnt.executeQuery()) {
 
@@ -101,7 +101,7 @@ public class AlunoDAOImplements implements IAlunoDAO {
     public void atualizarAluno(Aluno aluno) {
         String sql = "UPDATE aluno SET nome = ?, cpf = ?, email = ?, data_nascimento = ?, telefone = ? WHERE id = ?";
 
-        try (Connection conn = slqConn.getConnection();
+        try (Connection conn = sqlConn.getConnection();
              PreparedStatement stnt = conn.prepareStatement(sql)) {
 
             stnt.setString(1, aluno.getNome());
@@ -127,7 +127,7 @@ public class AlunoDAOImplements implements IAlunoDAO {
     public void excluirAluno(int id) {
         String sql = "DELETE FROM aluno WHERE id = ?";
 
-        try (Connection conn = slqConn.getConnection();
+        try (Connection conn = sqlConn.getConnection();
              PreparedStatement stmt = conn.prepareStatement(sql)) {
 
             stmt.setInt(1, id);
